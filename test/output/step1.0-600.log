@@ -1,0 +1,62 @@
+ARGUMENT	VALUE
+adata	./input/test_scdata.h5ad
+cell_type_col	
+focal_cell_type	
+gene_id_col	
+cell_id_col	
+donor_id_col	Donor
+pheno_file	
+batch_key	
+gene_list	./input/test_magma.csv
+control_gene_list	
+focal_cells	
+total_num_job	NA
+job_idx	NA
+start_idx	NA
+stop_idx	NA
+min_expr_var_thres	0.0001
+max_expr_var_thres	100.0
+min_num_donor	8
+min_frac_donor	0.333333
+min_num_cell	5
+neighborhood_definition_method	nam
+check_pheno_in_neighborhood	False
+max_step_size	15
+prob_thres	0.0001
+auto_gene_selection	True
+num_gwas_genes	500
+magma_fdr_thres	0.05
+min_num_gwas_genes	500
+max_num_gwas_genes	2000
+enrich_low_score_control_genes	False
+include_gwas_genes_in_control_genes	False
+num_expr_bins	10
+num_control_gene_set	1
+num_control_gene_set_testing	0
+match_expr_std	False
+pheno	Pheno
+covar	
+num_var_comp	3
+num_bootstrap_disattenuation	100
+num_bootstrap_regression	1000
+use_ols	False
+use_analytical_stderr	False
+scale_pheno	True
+scale_pheno_neighborhood	True
+exclude_diag	False
+exclude_intercept	False
+no_disattenuation	False
+skip_regression	False
+permute_within_batch	False
+save_neighborhood_cells	False
+save_neighborhood_donors	False
+save_target_nam	False
+save_realized_nam	False
+save_sceps_raw	False
+save_sceps_sigma	False
+out	./output/step1
+seed	0
+sample_frac	1.0
+force_rerun	False
+verbose	False
+sample_frac_cell_in_neighborhood	NA
