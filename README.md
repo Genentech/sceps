@@ -13,7 +13,7 @@ We provide a detailed manual of scEPS in the [Wiki page](https://github.com/Gene
 ## Option 1: using Anaconda or Miniforge
 The easiest way to install scEPS is by creating a dedicated environment through [Anaconda](https://www.anaconda.com/download) or [Miniforge](https://github.com/conda-forge/miniforge). To do this, please first install Anaconda or Miniforge on your machine. You may then install scEPS using the following commands:
 ``` shell
-git clone https://code.roche.com/shih43/sceps_tool.git
+git clone git@github.com:Genentech/sceps.git
 cd sceps_tool
 conda env create -f sceps.yml
 conda activate sceps
@@ -33,7 +33,7 @@ conda install scikit-learn=1.3.2
 
 Once the required packages to run scEPS are installed, the user may then install scEPS using:
 ```shell
-git clone https://code.roche.com/shih43/sceps_tool.git
+git clone git@github.com:Genentech/sceps.git
 ```
 
 # Reference
