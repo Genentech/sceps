@@ -3,15 +3,15 @@
 
 This repo contains the code of the method, **scEPS**, for integrating GWAS and single-cell disease cell atlas data to identify disease-associated cell neighborhoods. scEPS calculates a $d$ statistic at each cell neighborhood, representing the difference between the variance in disease explained by variations in the expression of each GWAS vs. each mean-expression matched control gene. An illustration of the scEPS method is shown below:
 
-![scEPS illustration](https://code.roche.com/shih43/sceps_tool/-/raw/main/img/scEPS_overview.png "Overview of the scEPS method")
+![scEPS illustration](https://github.com/Genentech/sceps/blob/master/img/scEPS_overview.png  "Overview of the scEPS method")
 
 # Manual
-We provide a detailed manual of scEPS in the [Wiki page](https://code.roche.com/shih43/sceps_tool/-/wikis/home).
+We provide a detailed manual of scEPS in the [Wiki page](https://github.com/Genentech/sceps/wiki).
 
 # Installation
 
 ## Option 1: using Anaconda or Miniforge
-The easiest way to install scEPS is by creating a dedicated environment through [Anaconda](https://www.anaconda.com/download) or [Miniforge](https://github.com/conda-forge/miniforge). To do this, please first install Anaconda or Miniforge on your machine. If you are using sHPC, you may run `ml Miniforge3/24.1.2-0`. You may then install scEPS using the following commands:
+The easiest way to install scEPS is by creating a dedicated environment through [Anaconda](https://www.anaconda.com/download) or [Miniforge](https://github.com/conda-forge/miniforge). To do this, please first install Anaconda or Miniforge on your machine. You may then install scEPS using the following commands:
 ``` shell
 git clone https://code.roche.com/shih43/sceps_tool.git
 cd sceps_tool
@@ -38,4 +38,4 @@ git clone https://code.roche.com/shih43/sceps_tool.git
 
 # Reference
 
-The current draft of the manuscript is available [here](https://docs.google.com/document/d/19XrZ_38oVuUGObGlE3A02FpjLFNKkLmjliCgqR6jaqg/edit?usp=sharing).
+The current draft of the manuscript is available [here](https://www.biorxiv.org/).
