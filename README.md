@@ -38,4 +38,4 @@ git clone git@github.com:Genentech/sceps.git
 
 # Reference
 
-The current draft of the manuscript is available [here](https://www.biorxiv.org/).
+The current draft of the manuscript is available [here](https://www.medrxiv.org/content/10.64898/2026.06.26.26356714v1).
