@@ -36,6 +36,10 @@ Once the required packages to run scEPS are installed, the user may then install
 git clone git@github.com:Genentech/sceps.git
 ```
 
+# Testing scEPS
+
+We provide examples script to test the scEPS workflow [here](https://github.com/Genentech/sceps/tree/master/test).
+
 # Reference
 
 The current draft of the manuscript is available [here](https://www.medrxiv.org/content/10.64898/2026.06.26.26356714v1).
