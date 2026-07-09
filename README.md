@@ -14,7 +14,7 @@ We provide a detailed manual of scEPS in the [Wiki page](https://github.com/Gene
 The easiest way to install scEPS is by creating a dedicated environment through [Anaconda](https://www.anaconda.com/download) or [Miniforge](https://github.com/conda-forge/miniforge). To do this, please first install Anaconda or Miniforge on your machine. You may then install scEPS using the following commands:
 ``` shell
 git clone git@github.com:Genentech/sceps.git
-cd sceps_tool
+cd sceps
 conda env create -f sceps.yml
 conda activate sceps
 ```
@@ -39,6 +39,10 @@ git clone git@github.com:Genentech/sceps.git
 # Testing scEPS
 
 We provide examples script to test the scEPS workflow [here](https://github.com/Genentech/sceps/tree/master/test).
+
+# Contact
+
+Please create a GitHub issue if you experience any issue with running scEPS.
 
 # Reference
 
