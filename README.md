@@ -3,6 +3,8 @@
 
 This repo contains the code of the method, **scEPS**, for integrating GWAS and single-cell disease cell atlas data to identify disease-associated cell neighborhoods. scEPS calculates a $d$ statistic at each cell neighborhood, representing the difference between the variance in disease explained by variations in the expression of each GWAS vs. each mean-expression matched control gene. An illustration of the scEPS method is shown below:
 
+The code we used to create the figures in [our manuscript](https://www.medrxiv.org/content/10.64898/2026.06.26.26356714v1) is available [here](https://github.com/Genentech/sceps_manuscript).
+
 ![scEPS illustration](https://github.com/Genentech/sceps/blob/master/img/scEPS_overview.png  "Overview of the scEPS method")
 
 # Manual
