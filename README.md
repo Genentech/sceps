@@ -7,7 +7,7 @@ This repo contains the code of the method, **scEPS**, for integrating GWAS and s
 
 # Reference
 
-The current draft of the manuscript is available [here](https://www.medrxiv.org/content/10.64898/2026.06.26.26356714v1). The code we used to create the figures in the manuscript is available [here](https://github.com/Genentech/sceps_manuscript).
+The current draft of the manuscript is available [here](https://www.medrxiv.org/content/10.64898/2026.06.26.26356714v1). The code we used to create the figures in the manuscript is available [here](https://github.com/Genentech/sceps_manuscript). We also implemented [CNA*](https://github.com/Genentech/cna_star), a simple extension of [CNA](https://github.com/immunogenomics/cna), for estimating the variance in disease attributable to variations in cell abundance at each cell neighborhood.
 
 # Manual
 We provide a detailed manual of scEPS in the [Wiki page](https://github.com/Genentech/sceps/wiki).
