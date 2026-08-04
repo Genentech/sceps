@@ -7,6 +7,9 @@ This will create 2 files under ./input:
 1. test_scdata.h5ad -- a simulated single-cell data with 600 cells of 10 different cell types across 20000 genes for 30 donors
 2. test_magma.txt -- a text file containing a simulated MAGMA result
 
+
+The pre-generated test data can be downloaded [here](https://github.com/Genentech/sceps_manuscript/tree/master/test_data/sceps).
+
 Please then run:
 1. step1.sh -- for estimating scEPS statistics for individual cell neighborhoods
 2. step2.sh -- for defining approximately independently cell neighborhood blocks
