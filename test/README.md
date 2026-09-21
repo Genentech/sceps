@@ -1,3 +1,5 @@
+The test scripts invoke the `sceps` command-line tools, so please make sure scEPS is installed first (see [Installation](https://github.com/Genentech/sceps#installation)).
+
 To run the test case, please first run
 ```
 python generate_test_data.py

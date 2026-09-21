@@ -13,8 +13,8 @@ from scipy.sparse import csr_matrix
 
 import statsmodels.api as sm
 
-from src.utils import *
-from src.scdata import *
+from .utils import *
+from .scdata import *
 
 import matplotlib.pyplot as plt
 import seaborn as sns

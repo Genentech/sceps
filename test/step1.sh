@@ -1,4 +1,4 @@
-python ../sceps.py \
+sceps \
     --adata ./input/test_scdata.h5ad \
     --donor-id-col Donor \
     --gene-list ./input/test_magma.txt \

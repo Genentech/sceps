@@ -9,8 +9,8 @@ import scanpy as sc
 import anndata as ad
 from sklearn.cluster import MiniBatchKMeans
 
-from src.utils import EPS
-from src.neighborhood import *
+from ..utils import EPS
+from ..neighborhood import *
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 

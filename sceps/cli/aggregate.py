@@ -7,10 +7,10 @@ from tqdm import tqdm
 import logging, random
 import scanpy as sc
 
-from src.utils import EPS
-from src.stats_test import get_weighted_mean
+from ..utils import EPS
+from ..stats_test import get_weighted_mean
 
-from src.scdata import *
+from ..scdata import *
 from sklearn.cluster import MiniBatchKMeans
 import statsmodels.stats.multitest as smm
 

@@ -6,7 +6,7 @@ import pandas as pd
 import scipy
 import scipy.stats
 
-from src.sceps_core import *
+from ..sceps_core import *
 from tqdm import tqdm
 
 def main():

@@ -17,6 +17,6 @@ dependencies:
   # progress bars and version parsing
   - tqdm=4.67.1
   - packaging=25.0
-  # imported by src/estimation.py (also pulled in by scanpy)
+  # imported by sceps/estimation.py (also pulled in by scanpy)
   - matplotlib-base=3.9.4
   - seaborn=0.13.2

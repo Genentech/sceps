@@ -9,7 +9,7 @@ import statsmodels as sm
 import statsmodels.stats.meta_analysis
 
 from scipy.stats import beta
-from src.utils import EPS
+from .utils import EPS
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 

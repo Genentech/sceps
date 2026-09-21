@@ -12,7 +12,7 @@ import scipy.stats as st
 import scipy.sparse as sp
 
 from sklearn.utils.sparsefuncs import inplace_row_scale
-from src.utils import *
+from .utils import *
 
 
 def get_connectivity(data):

@@ -3,7 +3,7 @@
 
 This repo contains the code of the method, **scEPS**, for integrating GWAS and single-cell disease cell atlas data to identify disease-associated cell neighborhoods. scEPS calculates a $d$ statistic at each cell neighborhood, representing the difference between the variance in disease explained by variations in the expression of each GWAS vs. each mean-expression matched control gene. An illustration of the scEPS method is shown below:
 
-![scEPS illustration](https://github.com/Genentech/sceps/blob/master/img/scEPS_overview.png  "Overview of the scEPS method")
+![scEPS illustration](https://raw.githubusercontent.com/Genentech/sceps/master/img/scEPS_overview.png  "Overview of the scEPS method")
 
 # Reference
 
@@ -16,32 +16,44 @@ We provide a detailed manual of scEPS in the [Wiki page](https://github.com/Gene
 
 # Installation
 
-## Option 1: using Anaconda or Miniforge
-The easiest way to install scEPS is by creating a dedicated environment through [Anaconda](https://www.anaconda.com/download) or [Miniforge](https://github.com/conda-forge/miniforge). To do this, please first install Anaconda or Miniforge on your machine. You may then install scEPS using the following commands:
+## Option 1: using pip
+
+The easiest way to install scEPS is from [PyPI](https://pypi.org/project/sceps/):
+```shell
+pip install sceps
+```
+
+This installs the `sceps` Python package along with the four command-line tools described under [Usage](#usage).
+
+## Option 2: using Anaconda or Miniforge
+scEPS may also be installed into a dedicated environment through [Anaconda](https://www.anaconda.com/download) or [Miniforge](https://github.com/conda-forge/miniforge). To do this, please first install Anaconda or Miniforge on your machine. You may then install scEPS using the following commands:
 ``` shell
 git clone git@github.com:Genentech/sceps.git
 cd sceps
 conda env create -f sceps.yml
 conda activate sceps
+pip install .
 ```
 
-## Option 2: manually install required packages
+The `sceps.yml` file installs the dependencies through conda; the final `pip install .` installs scEPS itself and its command-line tools. Use `pip install -e .` instead if you intend to modify the scEPS source.
 
-The user may also manually install the required packages to run scEPS. scEPS requires Python 3.9 and the following packages:
+## Option 3: manually install required packages
 
-| Package | Version tested |
-| --- | --- |
-| [numpy](https://numpy.org/) | 1.26.2 |
-| [pandas](https://pandas.pydata.org/) | 1.5.3 |
-| [scipy](https://scipy.org/) | 1.13.1 |
-| [anndata](https://anndata.readthedocs.io/) | 0.10.7 |
-| [scanpy](https://scanpy.readthedocs.io/) | 1.10.3 |
-| [scikit-learn](https://scikit-learn.org/) | 1.3.2 |
-| [statsmodels](https://www.statsmodels.org/) | 0.14.5 |
-| [tqdm](https://tqdm.github.io/) | 4.67.1 |
-| [packaging](https://packaging.pypa.io/) | 25.0 |
-| [matplotlib](https://matplotlib.org/) | 3.9.4 |
-| [seaborn](https://seaborn.pydata.org/) | 0.13.2 |
+The user may also manually install the required packages to run scEPS. scEPS requires Python 3.9 or newer and the following packages:
+
+| Package | Minimum | Version pinned in `sceps.yml` |
+| --- | --- | --- |
+| [numpy](https://numpy.org/) | 1.23 | 1.26.2 |
+| [pandas](https://pandas.pydata.org/) | 1.5 | 1.5.3 |
+| [scipy](https://scipy.org/) | 1.9 | 1.13.1 |
+| [anndata](https://anndata.readthedocs.io/) | 0.10 | 0.10.7 |
+| [scanpy](https://scanpy.readthedocs.io/) | 1.10 | 1.10.3 |
+| [scikit-learn](https://scikit-learn.org/) | 1.1 | 1.3.2 |
+| [statsmodels](https://www.statsmodels.org/) | 0.13 | 0.14.5 |
+| [tqdm](https://tqdm.github.io/) | 4.60 | 4.67.1 |
+| [packaging](https://packaging.pypa.io/) | 20 | 25.0 |
+| [matplotlib](https://matplotlib.org/) | 3.6 | 3.9.4 |
+| [seaborn](https://seaborn.pydata.org/) | 0.12 | 0.13.2 |
 
 These can be installed with a single command:
 ```shell
@@ -50,17 +62,38 @@ conda install -c conda-forge python=3.9 numpy=1.26.2 pandas=1.5.3 scipy=1.13.1 \
     tqdm=4.67.1 packaging=25.0 matplotlib-base=3.9.4 seaborn=0.13.2
 ```
 
-The versions above are the ones scEPS has been tested with; other recent versions are likely to work as well.
+The pinned versions are those used for the analyses in the manuscript, and `sceps.yml` reproduces that environment exactly. The minimums are the floors declared in `pyproject.toml`; scEPS has also been verified to reproduce identical output on numpy 2.x, pandas 2.x, anndata 0.12 and scanpy 1.11.
 
-The optional preprocessing helper script `misc/preprocess_scdata.py` additionally requires [harmonypy](https://github.com/slowkow/harmonypy) for batch integration:
+The optional preprocessing helper script `misc/preprocess_scdata.py` additionally requires [harmonypy](https://github.com/slowkow/harmonypy) for batch integration. This is also available as an extra:
 ```shell
-conda install -c conda-forge harmonypy
+pip install "sceps[preprocess]"
 ```
 
 Once the required packages to run scEPS are installed, the user may then install scEPS using:
 ```shell
 git clone git@github.com:Genentech/sceps.git
+cd sceps
+pip install --no-deps .
 ```
+
+# Usage
+
+Installing scEPS provides four command-line tools, corresponding to the four steps of the scEPS workflow:
+
+| Command | Purpose |
+| --- | --- |
+| `sceps` | Estimate scEPS statistics for individual cell neighborhoods |
+| `sceps-cluster-neighborhood` | Define approximately independent cell neighborhood blocks |
+| `sceps-aggregate` | Aggregate scEPS statistics across cell types and across all cells |
+| `sceps-corr` | Correlate scEPS statistics with gene expression |
+
+Pass `--help` to any of them for the full list of options, e.g. `sceps --help`. A detailed description of each step is available in the [Wiki page](https://github.com/Genentech/sceps/wiki).
+
+scEPS can also be driven from Python rather than the command line:
+```python
+from sceps.sceps_core import *
+```
+See [misc/run_sceps_from_python.py](https://github.com/Genentech/sceps/blob/master/misc/run_sceps_from_python.py) for a worked example.
 
 # Testing scEPS
 

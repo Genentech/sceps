@@ -1,0 +1,63 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sceps"
+version = "0.1.0"
+description = "Integrate GWAS and single-cell disease cell atlas data to identify disease-associated cell neighborhoods"
+readme = "README.md"
+requires-python = ">=3.9"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Genentech, Inc." }]
+keywords = ["single-cell", "GWAS", "genetics", "transcriptomics", "scRNA-seq"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Bio-Informatics",
+]
+
+# Lower bounds are the versions scEPS has been tested against; majors are capped
+# because this is an analysis tool rather than a library, so a breaking upstream
+# release should fail at resolution time and not halfway through a long run.
+dependencies = [
+    "numpy>=1.23,<3",
+    "pandas>=1.5,<3",
+    "scipy>=1.9,<2",
+    "anndata>=0.10,<1",
+    "scanpy>=1.10,<2",
+    "scikit-learn>=1.1,<2",
+    "statsmodels>=0.13,<1",
+    "tqdm>=4.60",
+    "packaging>=20",
+    # Imported by sceps/estimation.py. scanpy depends on both as well, but scEPS
+    # imports them directly, so they are declared directly.
+    "matplotlib>=3.6",
+    "seaborn>=0.12",
+]
+
+[project.optional-dependencies]
+# Only needed by the misc/preprocess_scdata.py helper (sce.pp.harmony_integrate).
+preprocess = ["harmonypy>=0.0.9"]
+
+[project.urls]
+Homepage = "https://github.com/Genentech/sceps"
+Documentation = "https://github.com/Genentech/sceps/wiki"
+Repository = "https://github.com/Genentech/sceps"
+Issues = "https://github.com/Genentech/sceps/issues"
+
+[project.scripts]
+sceps = "sceps.cli.run:main"
+sceps-cluster-neighborhood = "sceps.cli.cluster_neighborhood:main"
+sceps-aggregate = "sceps.cli.aggregate:main"
+sceps-corr = "sceps.cli.corr:main"
+
+[tool.setuptools.packages.find]
+# Ship only the importable package; test/, misc/ and img/ stay out of the wheel.
+include = ["sceps*"]

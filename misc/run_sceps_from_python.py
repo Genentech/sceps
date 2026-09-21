@@ -1,7 +1,4 @@
-import sys
-sys.path.append('/path/to/sceps_tool')
-
-from src.sceps_core import *
+from sceps.sceps_core import *
 
 # Create args with required arguments and default settings to run scEPS
 args = create_sceps_default_args(adata='/path/to/the/single/cell/data',

@@ -12,7 +12,7 @@ import scipy.stats as st
 import scipy.sparse as sp
 
 from sklearn.utils.sparsefuncs import inplace_row_scale
-from src.utils import *
+from .utils import *
 
 
 def get_pseudobulk(args, adata):
@@ -48,7 +48,7 @@ def get_pseudobulk(args, adata):
         num_cells[i] = cell_idx.shape[0]
 
     # create adata
-    adata_pseudobulk = ad.AnnData(pseudobulk_X, dtype=np.float32)
+    adata_pseudobulk = ad.AnnData(pseudobulk_X.astype(np.float32))
     adata_pseudobulk.obs = obs.copy()
     adata_pseudobulk.var = adata.var.copy()
     adata_pseudobulk.obs['sceps.num_cells'] = num_cells

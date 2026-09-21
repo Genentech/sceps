@@ -6,7 +6,7 @@ import numpy as np
 import scipy
 import scipy.stats
 
-from src.utils import get_start_stop_index
+from ..utils import get_start_stop_index
 from tqdm import tqdm
 
 import warnings
