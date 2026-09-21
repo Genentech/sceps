@@ -2,7 +2,7 @@ The test scripts invoke the `sceps` command-line tools, so please make sure scEP
 
 To run the test case, please first run
 ```
-python generate_test_data.py
+sceps-generate-test-data
 ```
 
 This will create 2 files under ./input:
@@ -10,7 +10,11 @@ This will create 2 files under ./input:
 2. test_magma.txt -- a text file containing a simulated MAGMA result
 
 
+Pass `--help` to see the simulation settings that can be adjusted (number of donors, cells per donor, genes, cell types and the random seed). The defaults reproduce the test data described above.
+
 The pre-generated test data can be downloaded [here](https://github.com/Genentech/sceps_manuscript/tree/master/test_data/sceps).
+
+Note that `step1.sh` writes to the same file names as the reference outputs already committed under `./output`, so running it will overwrite them. Use `git diff` afterwards to compare your run against the reference, or copy `./output` aside first.
 
 Please then run:
 1. step1.sh -- for estimating scEPS statistics for individual cell neighborhoods

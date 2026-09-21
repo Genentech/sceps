@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "sceps"
-version = "0.1.0"
+version = "0.2.0"
 description = "Integrate GWAS and single-cell disease cell atlas data to identify disease-associated cell neighborhoods"
 readme = "README.md"
 requires-python = ">=3.9"
@@ -57,6 +57,7 @@ sceps = "sceps.cli.run:main"
 sceps-cluster-neighborhood = "sceps.cli.cluster_neighborhood:main"
 sceps-aggregate = "sceps.cli.aggregate:main"
 sceps-corr = "sceps.cli.corr:main"
+sceps-generate-test-data = "sceps.cli.generate_test_data:main"
 
 [tool.setuptools.packages.find]
 # Ship only the importable package; test/, misc/ and img/ stay out of the wheel.

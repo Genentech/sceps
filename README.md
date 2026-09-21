@@ -78,7 +78,7 @@ pip install --no-deps .
 
 # Usage
 
-Installing scEPS provides four command-line tools, corresponding to the four steps of the scEPS workflow:
+Installing scEPS provides the following command-line tools. The first four correspond to the four steps of the scEPS workflow:
 
 | Command | Purpose |
 | --- | --- |
@@ -86,6 +86,7 @@ Installing scEPS provides four command-line tools, corresponding to the four ste
 | `sceps-cluster-neighborhood` | Define approximately independent cell neighborhood blocks |
 | `sceps-aggregate` | Aggregate scEPS statistics across cell types and across all cells |
 | `sceps-corr` | Correlate scEPS statistics with gene expression |
+| `sceps-generate-test-data` | Simulate a small test data set for trying out the workflow |
 
 Pass `--help` to any of them for the full list of options, e.g. `sceps --help`. A detailed description of each step is available in the [Wiki page](https://github.com/Genentech/sceps/wiki).
 
@@ -97,7 +98,31 @@ See [misc/run_sceps_from_python.py](https://github.com/Genentech/sceps/blob/mast
 
 # Testing scEPS
 
-We provide examples script to test the scEPS workflow [here](https://github.com/Genentech/sceps/tree/master/test).
+The `sceps-generate-test-data` command simulates a small data set so that the whole workflow can be exercised from a plain `pip install`, without cloning this repository:
+
+```shell
+sceps-generate-test-data
+```
+
+This writes `test_scdata.h5ad` (600 cells of 10 cell types across 20,000 genes for 30 donors) and `test_magma.txt` into `./input`. The four workflow steps can then be run against it:
+
+```shell
+sceps --adata ./input/test_scdata.h5ad --donor-id-col Donor \
+    --gene-list ./input/test_magma.txt --auto-gene-selection \
+    --pheno Pheno --scale-pheno --scale-pheno-neighborhood --out ./output/step1
+sceps-cluster-neighborhood --adata ./input/test_scdata.h5ad --donor-id-col Donor \
+    --neighbors-use-rep X_pca --out ./output/step2
+sceps-aggregate --prefix "./output/step1.*.txt.gz" --adata ./input/test_scdata.h5ad \
+    --neighborhood-clusters ./output/step2.txt.gz --cell-type-col CellType --out ./output/step3
+sceps-corr --adata ./input/test_scdata.h5ad --sceps-result ./output/step3.sceps.omega.txt.gz \
+    --min-num-nonzero 3 --out ./output/step4
+```
+
+Create the `./output` directory first. The first step analyzes every cell neighborhood in turn and takes a few minutes on the simulated data; add `--start-idx 0 --stop-idx 40` to run a subset instead.
+
+Because the simulated expression values and phenotypes are drawn independently, no cell neighborhood is expected to show a genuine disease association. The purpose of the test data is to confirm that the workflow runs end to end and to illustrate the format of each output file.
+
+The equivalent shell scripts, together with reference output files to compare against, are also provided [here](https://github.com/Genentech/sceps/tree/master/test).
 
 # Contact
 
