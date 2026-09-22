@@ -21,6 +21,21 @@ jobs:
           python -m pip install --upgrade build twine
           python -m build
           python -m twine check --strict dist/*
+
+      # A release tag whose commit carries a different version silently produces
+      # an artifact that does not match the tag, which is easy to miss and
+      # impossible to correct once uploaded. Fail here instead.
+      - name: Check the tag matches the built version
+        if: github.event_name == 'release'
+        run: |
+          built=$(ls dist/*.tar.gz | sed -E 's/.*sceps-(.+)\.tar\.gz/\1/')
+          tag=${GITHUB_REF_NAME#v}
+          echo "tag=$tag built=$built"
+          if [ "$tag" != "$built" ]; then
+            echo "::error::Tag $GITHUB_REF_NAME does not match built version $built."
+            echo "::error::Re-tag the commit whose pyproject.toml declares $tag."
+            exit 1
+          fi
       - uses: actions/upload-artifact@v4
         with:
           name: dist
@@ -65,6 +80,9 @@ jobs:
       - uses: pypa/gh-action-pypi-publish@release/v1
         with:
           repository-url: https://test.pypi.org/legacy/
+          # Re-running a release whose files are already uploaded is a no-op
+          # rather than an error; PyPI filenames can never be reused.
+          skip-existing: true
 
   pypi:
     needs: verify
@@ -79,3 +97,9 @@ jobs:
           name: dist
           path: dist/
       - uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          # Re-running a release whose files are already uploaded is a no-op
+          # rather than an error; PyPI filenames can never be reused. The
+          # version/tag check in the build job is what catches a genuinely
+          # wrong version, so this does not mask that mistake.
+          skip-existing: true
