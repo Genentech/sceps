@@ -16,65 +16,62 @@ We provide a detailed manual of scEPS in the [Wiki page](https://github.com/Gene
 
 # Installation
 
-## Option 1: using pip
-
-The easiest way to install scEPS is from [PyPI](https://pypi.org/project/sceps/):
+scEPS requires Python 3.9 or newer and is available on [PyPI](https://pypi.org/project/sceps/):
 ```shell
 pip install sceps
 ```
 
-This installs the `sceps` Python package along with the four command-line tools described under [Usage](#usage).
+This installs the `sceps` Python package along with the command-line tools described under [Usage](#usage). The required dependencies, including scanpy, anndata, numpy, pandas, scipy, scikit-learn and statsmodels, are resolved automatically; the supported version ranges are declared in `pyproject.toml`.
 
-## Option 2: using Anaconda or Miniforge
-scEPS may also be installed into a dedicated environment through [Anaconda](https://www.anaconda.com/download) or [Miniforge](https://github.com/conda-forge/miniforge). To do this, please first install Anaconda or Miniforge on your machine. You may then install scEPS using the following commands:
-``` shell
+To keep scEPS in a dedicated [conda](https://github.com/conda-forge/miniforge) environment:
+```shell
+conda create -n sceps python=3.11
+conda activate sceps
+pip install sceps
+```
+
+To install from a checkout instead, for example to modify the scEPS source:
+```shell
 git clone git@github.com:Genentech/sceps.git
 cd sceps
-conda env create -f sceps.yml
-conda activate sceps
-pip install .
+pip install -e .
 ```
 
-The `sceps.yml` file installs the dependencies through conda; the final `pip install .` installs scEPS itself and its command-line tools. Use `pip install -e .` instead if you intend to modify the scEPS source.
-
-## Option 3: manually install required packages
-
-The user may also manually install the required packages to run scEPS. scEPS requires Python 3.9 or newer and the following packages:
-
-| Package | Minimum | Version pinned in `sceps.yml` |
-| --- | --- | --- |
-| [numpy](https://numpy.org/) | 1.23 | 1.26.2 |
-| [pandas](https://pandas.pydata.org/) | 1.5 | 1.5.3 |
-| [scipy](https://scipy.org/) | 1.9 | 1.13.1 |
-| [anndata](https://anndata.readthedocs.io/) | 0.10 | 0.10.7 |
-| [scanpy](https://scanpy.readthedocs.io/) | 1.10 | 1.10.3 |
-| [scikit-learn](https://scikit-learn.org/) | 1.1 | 1.3.2 |
-| [statsmodels](https://www.statsmodels.org/) | 0.13 | 0.14.5 |
-| [tqdm](https://tqdm.github.io/) | 4.60 | 4.67.1 |
-| [packaging](https://packaging.pypa.io/) | 20 | 25.0 |
-| [matplotlib](https://matplotlib.org/) | 3.6 | 3.9.4 |
-| [seaborn](https://seaborn.pydata.org/) | 0.12 | 0.13.2 |
-
-These can be installed with a single command:
-```shell
-conda install -c conda-forge python=3.9 numpy=1.26.2 pandas=1.5.3 scipy=1.13.1 \
-    anndata=0.10.7 scanpy=1.10.3 scikit-learn=1.3.2 statsmodels=0.14.5 \
-    tqdm=4.67.1 packaging=25.0 matplotlib-base=3.9.4 seaborn=0.13.2
-```
-
-The pinned versions are those used for the analyses in the manuscript, and `sceps.yml` reproduces that environment exactly. The minimums are the floors declared in `pyproject.toml`; scEPS has also been verified to reproduce identical output on numpy 2.x, pandas 2.x, anndata 0.12 and scanpy 1.11.
-
-The optional preprocessing helper script `misc/preprocess_scdata.py` additionally requires [harmonypy](https://github.com/slowkow/harmonypy) for batch integration. This is also available as an extra:
+The optional preprocessing helper script `misc/preprocess_scdata.py` additionally requires [harmonypy](https://github.com/slowkow/harmonypy) for batch integration. This is available as an extra:
 ```shell
 pip install "sceps[preprocess]"
 ```
 
-Once the required packages to run scEPS are installed, the user may then install scEPS using:
+# Reproducing the manuscript environment
+
+The `sceps.yml` file pins the exact dependency versions used for the analyses in the manuscript. This is only needed to reproduce those results; for ordinary use, `pip install sceps` above is sufficient.
+
 ```shell
 git clone git@github.com:Genentech/sceps.git
 cd sceps
+conda env create -f sceps.yml
+conda activate sceps
 pip install --no-deps .
 ```
+
+The `--no-deps` flag leaves the versions resolved by conda untouched, so the environment matches the pins exactly.
+
+| Package | Version used |
+| --- | --- |
+| [python](https://www.python.org/) | 3.9.18 |
+| [numpy](https://numpy.org/) | 1.26.2 |
+| [pandas](https://pandas.pydata.org/) | 1.5.3 |
+| [scipy](https://scipy.org/) | 1.13.1 |
+| [anndata](https://anndata.readthedocs.io/) | 0.10.7 |
+| [scanpy](https://scanpy.readthedocs.io/) | 1.10.3 |
+| [scikit-learn](https://scikit-learn.org/) | 1.3.2 |
+| [statsmodels](https://www.statsmodels.org/) | 0.14.5 |
+| [tqdm](https://tqdm.github.io/) | 4.67.1 |
+| [packaging](https://packaging.pypa.io/) | 25.0 |
+| [matplotlib](https://matplotlib.org/) | 3.9.4 |
+| [seaborn](https://seaborn.pydata.org/) | 0.13.2 |
+
+scEPS is not restricted to these versions. It has also been verified to produce identical output on numpy 2.x, pandas 2.x, anndata 0.12 and scanpy 1.11.
 
 # Usage
 
