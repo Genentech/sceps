@@ -11,6 +11,8 @@ The current draft of the manuscript is available [here](https://www.medrxiv.org/
 
 We also provide a web UI for visualizing the results in the scEPS manuscript [here](https://scepsresultexplorer.streamlit.app/).
 
+We also provide a tutorial to run scEPS on [Cellink](https://cellink-docs.readthedocs.io/en/latest/index.html) [here](https://cellink-docs.readthedocs.io/en/latest/tutorials/sceps.html).
+
 # Manual
 We provide a detailed manual of scEPS in the [Wiki page](https://github.com/Genentech/sceps/wiki).
 
